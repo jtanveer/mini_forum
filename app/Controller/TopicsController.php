@@ -17,7 +17,7 @@ class TopicsController extends AppController {
 
 	public function beforeFilter() {
 	    parent::beforeFilter();
-	    // pr($this->Auth->user());die;
+
 	    $this->Auth->allow('index', 'view');
 	}
 
