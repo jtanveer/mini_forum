@@ -18,34 +18,38 @@ class UsersController extends AppController {
 	public function beforeFilter() {
 	    parent::beforeFilter();
 
-	    // $this->Auth->allow();
+	    $this->Auth->allow('register');
 
 	    // $this->Auth->allow('init_db'); // need to be removed after use
 	}
 
-	public function init_db() {
-	    $group = $this->User->Group;
 
-	    // Allow admins to everything
-	    $group->id = 1;
-	    $this->Acl->allow($group, 'controllers');
+	/**
+	*	This function is for configuring ACL. should be run once
+	*/
+	// public function init_db() {
+	//     $group = $this->User->Group;
 
-	    // allow users to only view/add topics and replies and view categories
-	    $group->id = 2;
-	    $this->Acl->deny($group, 'controllers');
-	    $this->Acl->allow($group, 'controllers/Topics/all');
-	    $this->Acl->allow($group, 'controllers/Topics/topic');
-	    $this->Acl->allow($group, 'controllers/Topics/create');
-	    $this->Acl->allow($group, 'controllers/Topics/ajax_reply');
-	    $this->Acl->allow($group, 'controllers/Categories/all');
+	//     // Allow admins to everything
+	//     $group->id = 1;
+	//     $this->Acl->allow($group, 'controllers');
 
-	    // allow basic users to log out
-	    $this->Acl->allow($group, 'controllers/users/logout');
+	//     // allow users to only view/add topics and replies and view categories
+	//     $group->id = 2;
+	//     $this->Acl->deny($group, 'controllers');
+	//     $this->Acl->allow($group, 'controllers/Topics/all');
+	//     $this->Acl->allow($group, 'controllers/Topics/topic');
+	//     $this->Acl->allow($group, 'controllers/Topics/create');
+	//     $this->Acl->allow($group, 'controllers/Topics/ajax_reply');
+	//     $this->Acl->allow($group, 'controllers/Categories/all');
 
-	    // we add an exit to avoid an ugly "missing views" error message
-	    echo "all done";
-	    exit;
-	}
+	//     // allow basic users to log out
+	//     $this->Acl->allow($group, 'controllers/users/logout');
+
+	//     // we add an exit to avoid an ugly "missing views" error message
+	//     echo "all done";
+	//     exit;
+	// }
 
 /**
  * index method
@@ -55,6 +59,12 @@ class UsersController extends AppController {
 	public function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
+	}
+
+	public function register() {
+		if ($this->Session->read('Auth.User')) {
+	        return $this->redirect($this->Auth->redirectUrl());
+	    }
 	}
 
 	public function login() {

@@ -13,7 +13,7 @@
 		</dd>
 		<dt><?php echo __('Topic'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($reply['Topic']['content'], array('controller' => 'topics', 'action' => 'view', $reply['Topic']['id'])); ?>
+			<?php echo $this->Html->link($reply['Topic']['title'], array('controller' => 'topics', 'action' => 'view', $reply['Topic']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('User'); ?></dt>

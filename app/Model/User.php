@@ -156,4 +156,11 @@ class User extends AppModel {
         return true;
     }
 
+    public function afterFind($results, $primary = false) {
+        foreach ($results as $key => &$item) {
+            unset($item['User']['password']);
+        }
+        return $results;
+    }
+
 }

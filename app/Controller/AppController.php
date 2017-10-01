@@ -32,6 +32,7 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 	public $components = array(
+		'DebugKit.Toolbar',
 		'Acl',
 		'Auth' => array(
 			'authorize' => array(
@@ -56,7 +57,7 @@ class AppController extends Controller {
 		);
 		$this->Auth->loginRedirect = array(
 			'controller' => 'topics',
-			'action' => 'index'
+			'action' => 'all'
 		);
 		$this->Auth->allow('display');
 	}

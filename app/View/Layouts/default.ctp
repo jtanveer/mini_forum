@@ -14,15 +14,15 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
-$cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
+$siteDescription = __d('mini_forum', 'Mini Forum: A forum of life!');
+$devInfo = __d('mini_forum', 'Developed by: Jamael Tanveer Nayon');
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $cakeDescription ?>:
+		<?php echo $siteDescription ?>:
 		<?php echo $this->fetch('title'); ?>
 	</title>
 	<?php
@@ -38,7 +38,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'https://cakephp.org'); ?></h1>
+			<h1><?php echo $this->Html->link($siteDescription, 'https://cakephp.org'); ?></h1>
 		</div>
 		<div id="content">
 			<?php echo $this->Session->flash('Auth'); ?>
@@ -48,16 +48,15 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		</div>
 		<div id="footer">
 			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
+					$this->Html->image('cake.power.gif', array('alt' => $siteDescription, 'border' => '0')),
 					'https://cakephp.org/',
 					array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
 				);
 			?>
 			<p>
-				<?php echo $cakeVersion; ?>
+				<?php echo $devInfo; ?>
 			</p>
 		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>

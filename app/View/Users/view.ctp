@@ -21,11 +21,11 @@
 			<?php echo h($user['User']['email']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Password'); ?></dt>
+		<!-- <dt><?php echo __('Password'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['password']); ?>
 			&nbsp;
-		</dd>
+		</dd> -->
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['created']); ?>

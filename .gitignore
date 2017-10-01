@@ -1,3 +1,7 @@
+# CakePHP related files #
+#########################
+/app/tmp/
+
 # IDE and editor specific files #
 #################################
 /nbproject

@@ -3,6 +3,7 @@
 	<fieldset>
 		<legend><?php echo __('Add Topic'); ?></legend>
 	<?php
+		echo $this->Form->input('title');
 		echo $this->Form->input('content');
 		echo $this->Form->input('category_id');
 		echo $this->Form->input('user_id');

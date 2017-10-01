@@ -6,6 +6,11 @@
 			<?php echo h($topic['Topic']['id']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Title'); ?></dt>
+		<dd>
+			<?php echo h($topic['Topic']['title']); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Content'); ?></dt>
 		<dd>
 			<?php echo h($topic['Topic']['content']); ?>

@@ -18,7 +18,7 @@
 		<td><?php echo h($reply['Reply']['id']); ?>&nbsp;</td>
 		<td><?php echo h($reply['Reply']['text']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($reply['Topic']['content'], array('controller' => 'topics', 'action' => 'view', $reply['Topic']['id'])); ?>
+			<?php echo $this->Html->link($reply['Topic']['title'], array('controller' => 'topics', 'action' => 'view', $reply['Topic']['id'])); ?>
 		</td>
 		<td>
 			<?php echo $this->Html->link($reply['User']['username'], array('controller' => 'users', 'action' => 'view', $reply['User']['id'])); ?>

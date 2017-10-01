@@ -15,10 +15,12 @@ class TopicsController extends AppController {
  */
 	public $components = array('Paginator');
 
+	public $uses = array('Topic', 'Category');
+
 	public function beforeFilter() {
 	    parent::beforeFilter();
 
-	    $this->Auth->allow('index', 'view');
+	    $this->Auth->allow('all', 'view');
 	}
 
 /**
@@ -115,10 +117,14 @@ class TopicsController extends AppController {
 	}
 
 	public function all() {
-
+		$this->Topic->recursive = 0;
+		$topics = $this->Paginator->paginate('Topic');
+		$this->Category->recursive = 0;
+		$categories = $this->Category->find('all');
+		$this->set(compact('topics', 'categories'));
 	}
 
-	public function topic($id = null) {
+	public function details($id = null) {
 
 	}
 
