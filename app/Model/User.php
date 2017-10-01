@@ -157,9 +157,12 @@ class User extends AppModel {
     }
 
     public function afterFind($results, $primary = false) {
-        foreach ($results as $key => &$item) {
-            unset($item['User']['password']);
-        }
+    	// we need password only at the time of login
+    	if (strpos(Router::url(null, false), 'login') === false) {
+	        foreach ($results as $key => &$item) {
+	            unset($item['User']['password']);
+	        }
+	    }
         return $results;
     }
 
