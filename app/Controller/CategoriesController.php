@@ -105,4 +105,8 @@ class CategoriesController extends AppController {
 	public function all() {
 		
 	}
+
+	public function details($id = null) {
+		
+	}
 }
