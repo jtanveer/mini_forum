@@ -28,7 +28,7 @@ $devInfo = __d('mini_forum', 'Developed by: Jamael Tanveer Nayon');
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
+		echo $this->Html->css('mini_forum.generic');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -38,7 +38,16 @@ $devInfo = __d('mini_forum', 'Developed by: Jamael Tanveer Nayon');
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link($siteDescription, 'https://cakephp.org'); ?></h1>
+			<h1 class="block-left"><?php echo $siteDescription; ?></h1>
+			<div class="block-right">
+				<div class="block-left">
+					<?php echo $this->Access->isLoggedin() ? '<p>Welcome '.$this->Access->user['username'].'!</p>' : '<p>Welcome!</p>'; ?>
+				</div>
+				<div class="block-right padding-left">
+					<?php echo $this->Access->isLoggedin() ? $this->Html->link(__('Logout'), array('controller' => 'users', 'action' => 'logout')) : $this->Html->link(__('Login'), array('controller' => 'users', 'action' => 'login')); ?>
+				</div>
+					
+			</div>
 		</div>
 		<div id="content">
 			<?php echo $this->Session->flash('auth'); ?>

@@ -20,7 +20,7 @@ class TopicsController extends AppController {
 	public function beforeFilter() {
 	    parent::beforeFilter();
 
-	    $this->Auth->allow('all', 'view');
+	    $this->Auth->allow('all', 'details');
 	}
 
 /**
@@ -125,11 +125,27 @@ class TopicsController extends AppController {
 	}
 
 	public function details($id = null) {
-
+		if (!$this->Topic->exists($id)) {
+			throw new NotFoundException(__('Invalid topic'));
+		}
+		$options = array('conditions' => array('Topic.' . $this->Topic->primaryKey => $id));
+		$this->set('topic', $this->Topic->find('first', $options));
 	}
 
 	public function create() {
-
+		if ($this->request->is('post')) {
+			$user = $this->Auth->user();
+			$this->request->data['Topic']['user_id'] = $user['id'];
+			$this->Topic->create();
+			if ($this->Topic->save($this->request->data)) {
+				$this->Flash->success(__('The topic has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Flash->error(__('The topic could not be saved. Please, try again.'));
+			}
+		}
+		$categories = $this->Topic->Category->find('list');
+		$this->set(compact('categories'));
 	}
 
 	public function ajax_reply($id = null) {

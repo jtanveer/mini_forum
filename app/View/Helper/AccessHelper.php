@@ -25,8 +25,12 @@ class AccessHelper extends AppHelper {
 		return $this->Access->checkHelper(array('model' => 'Group', 'foreign_key' => $this->user['Group']['id']), $aco, $action);
 	}
 	
-	function isLoggedin(){
+	function isLoggedin() {
 		return !empty($this->user);
+	}
+
+	function getUser() {
+		return $this->user;
 	}
 }
 ?>

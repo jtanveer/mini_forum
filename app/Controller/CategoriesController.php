@@ -103,10 +103,15 @@ class CategoriesController extends AppController {
 	}
 
 	public function all() {
-		
+		$this->Category->recursive = 0;
+		$this->set('categories', $this->Paginator->paginate());
 	}
 
 	public function details($id = null) {
-		
+		if (!$this->Category->exists($id)) {
+			throw new NotFoundException(__('Invalid category'));
+		}
+		$options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
+		$this->set('category', $this->Category->find('first', $options));
 	}
 }

@@ -62,6 +62,20 @@ class UsersController extends AppController {
 	}
 
 	public function register() {
+		if ($this->request->is('post')) {
+	        $data = $this->request->data;
+	        if($data['User']['password'] == $data['User']['password_again']) {
+	        	$data['User']['group_id'] = 2;
+	        	$this->User->create();
+	        	if($this->User->save($data)) {
+	        		$this->Session->setFlash(__('Registration successful!'));
+	        		return $this->redirect('/users/login');
+	        	} else {
+					return $this->Flash->error(__('Registration was not successful!'));
+	        	}
+	        }
+	        $this->Session->setFlash(__('Passwords did not match.'));
+	    }
 		if ($this->Session->read('Auth.User')) {
 	        return $this->redirect($this->Auth->redirectUrl());
 	    }
@@ -81,7 +95,7 @@ class UsersController extends AppController {
 
 	public function logout() {
 	    $this->Session->setFlash(__('Successfully logged out'));
-		$this->redirect($this->Auth->logout());
+		return $this->redirect($this->Auth->logout());
 	}
 
 /**
