@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.5-10.1.21-MariaDB)
 # Database: mini_forum
-# Generation Time: 2017-10-01 18:37:04 +0000
+# Generation Time: 2017-10-02 22:07:43 +0000
 # ************************************************************
 
 
@@ -211,7 +211,7 @@ LOCK TABLES `groups` WRITE;
 INSERT INTO `groups` (`id`, `name`, `created`, `modified`)
 VALUES
 	(1,'admin','2017-09-29 17:36:18','2017-09-29 17:36:18'),
-	(2,'user','2017-09-29 17:36:25','2017-09-29 17:36:25');
+	(2,'author','2017-09-29 17:36:25','2017-09-29 17:36:25');
 
 /*!40000 ALTER TABLE `groups` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -295,7 +295,8 @@ VALUES
 	(21,'South Africa vs Bangladesh','South Africa vs Bangladesh, Live Cricket Score, 1st Test Day 4: Rain stops play; South Africa lead by 388 runs.',8,2,'2017-10-01 11:49:49','2017-10-01 11:49:49'),
 	(22,'Srilanka vs Pakistan','Eleven sessions into this match, with only four to go, what has been achieved? A three-run lead. That measly advantage belongs, if you are wondering, to Pakistan. They had begun the session in danger of conceding a lead of over 50, but thanks to Haris Sohail\'s dogged persistence, they stuck around long enough to limp over Sri Lanka\'s 419.',8,1,'2017-10-01 11:51:51','2017-10-01 11:51:51'),
 	(23,'India vs Australia','India wins over Australia in the ODI series by 4-1.',8,3,'2017-10-01 16:17:07','2017-10-01 16:17:07'),
-	(24,'Arsenal vs Brighton','Arsenal wins convincingly against Brighton by 2 goals.',8,3,'2017-10-01 18:02:22','2017-10-01 18:02:22');
+	(24,'Arsenal vs Brighton','Arsenal wins convincingly against Brighton by 2 goals.',8,3,'2017-10-01 18:02:22','2017-10-01 18:02:22'),
+	(25,'Test Cricket','South Africa won convincingly against Bangladesh in the first match of the series. Proteas humbled Bangladesh by a big margin of 333 runs.',8,1,'2017-10-02 20:50:57','2017-10-02 20:50:57');
 
 /*!40000 ALTER TABLE `topics` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -325,7 +326,8 @@ INSERT INTO `users` (`id`, `username`, `group_id`, `email`, `password`, `created
 VALUES
 	(1,'admin',1,'imjtnayon@gmail.com','da8f8960c914667963ebd8c55216813ab6d88871','2017-09-29 17:36:46','2017-10-01 15:20:10'),
 	(2,'author1',2,'jtanveer@outlook.com','da8f8960c914667963ebd8c55216813ab6d88871','2017-09-29 17:37:08','2017-09-29 17:37:08'),
-	(3,'author2',2,'imjtn@yahoo.com','da8f8960c914667963ebd8c55216813ab6d88871','2017-09-29 17:37:42','2017-09-29 17:37:42');
+	(3,'author2',2,'imjtn@yahoo.com','da8f8960c914667963ebd8c55216813ab6d88871','2017-09-29 17:37:42','2017-09-29 17:37:42'),
+	(4,'author3',2,'a@b.com','bb06321953015f8dba5a4080d86f5eb8a51de05b','2017-10-02 20:29:45','2017-10-02 20:29:45');
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
