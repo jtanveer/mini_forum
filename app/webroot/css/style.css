@@ -1,7 +1,7 @@
 @charset "utf-8";
 
-/* Sticky footer styles
--------------------------------------------------- */
+/* Sticky footer styles */
+/* -------------------------------------------------- */
 html {
 	position: relative;
 	min-height: 100%;
@@ -24,10 +24,9 @@ body {
 }
 
 
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
-
+/* Custom page CSS */
+/* -------------------------------------------------- */
+/* app specific styles */
 body > .container {
 	padding: 4rem 1rem 0;
 }
@@ -46,24 +45,8 @@ code {
     color: #666;
 }
 
-/* app specific styles */
 .div-center {
     margin: 0 auto;
     width: 50%;
     background: #eee;
-}
-
-.cell-container {
-    position: relative;
-}
-.cell-content {
-    position: absolute;
-    max-width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.cell-spacer {
-    height: 0;
-    overflow: hidden;
 }
