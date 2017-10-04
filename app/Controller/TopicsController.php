@@ -117,7 +117,7 @@ class TopicsController extends AppController {
 	}
 
 	public function all() {
-		$this->Topic->recursive = 0;
+		$this->Topic->recursive = 1;
 		$topics = $this->Paginator->paginate('Topic');
 		$this->Category->recursive = 0;
 		$categories = $this->Category->find('all');

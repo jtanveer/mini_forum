@@ -28,10 +28,10 @@ $devInfo = __d('mini_forum', 'Developed by: Jamael Tanveer Nayon');
 		<?php echo $this->fetch('title'); ?>
 	</title>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
 	<?php
 		echo $this->Html->meta('icon');
@@ -45,54 +45,45 @@ $devInfo = __d('mini_forum', 'Developed by: Jamael Tanveer Nayon');
 	?>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<nav class="navbar sticky-top navbar-toggleable-md navbar-inverse bg-inverse">
-				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<a class="navbar-brand" href="/">Mini Forum</a>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active">
-							<a class="nav-link" href="/topics/all">Topics <span class="sr-only">(current)</span></a>
-						</li>
-						<li class="nav-item active">
-							<a class="nav-link" href="/categories/all">Categories</a>
-						</li>
-					</ul>
-					<div class="text-white my-auto mr-2">
-						<?php echo $this->Access->isLoggedin() ? '<h6>Welcome '.$this->Access->user['username'].'!</h6>' : '<h6>Welcome!</h6>'; ?>
-					</div>
-					<div>
-						<?php 
-							if($this->Access->isLoggedin()) {
-								echo $this->Html->link(__('Logout'), array('controller' => 'users', 'action' => 'logout'), array('class' => 'btn btn-secondary'));
-							} else {
-								echo $this->Html->link(__('Login'), array('controller' => 'users', 'action' => 'login'), array('class' => 'btn btn-secondary mr-2'));
-								echo $this->Html->link(__('Register'), array('controller' => 'users', 'action' => 'register'), array('class' => 'btn btn-secondary'));
-							}
-						?>
-					</div>
-			</nav>
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+		<a class="navbar-brand" href="/">Mini Forum</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="/topics/all">Topics <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="/categories/all">Categories</a>
+				</li>
+			</ul>
+			<div class="text-white mt-2 mr-2">
+				<?php echo $this->Access->isLoggedin() ? '<h6>Welcome '.$this->Access->user['username'].'!</h6>' : '<h6>Welcome!</h6>'; ?>
+			</div>
+			<div>
+				<?php 
+					if($this->Access->isLoggedin()) {
+						echo $this->Html->link(__('Logout'), array('controller' => 'users', 'action' => 'logout'), array('class' => 'btn btn-secondary'));
+					} else {
+						echo $this->Html->link(__('Login'), array('controller' => 'users', 'action' => 'login'), array('class' => 'btn btn-secondary mr-2'));
+						echo $this->Html->link(__('Register'), array('controller' => 'users', 'action' => 'register'), array('class' => 'btn btn-secondary'));
+					}
+				?>
+			</div>
 		</div>
-		<div id="content">
-			<?php echo $this->Session->flash('auth'); ?>
-			<?php echo $this->Flash->render(); ?>
+	</nav>
+	<div class="container">
+		<?php echo $this->Session->flash('auth'); ?>
+		<?php echo $this->Flash->render(); ?>
 
-			<?php echo $this->fetch('content'); ?>
-		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $siteDescription, 'border' => '0')),
-					'https://cakephp.org/',
-					array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-				);
-			?>
-			<p>
-				<?php echo $devInfo; ?>
-			</p>
-		</div>
+		<?php echo $this->fetch('content'); ?>
 	</div>
+	<footer class="footer">
+  		<div class="container-fluid">
+    		<span class="text-muted"><?php echo $devInfo; ?></span>
+  		</div>
+    </footer>
 </body>
 </html>
