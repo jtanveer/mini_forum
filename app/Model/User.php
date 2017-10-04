@@ -40,7 +40,7 @@ class User extends AppModel {
 		'username' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
-				//'message' => 'Your custom message here',
+				'message' => 'Username can\'t be empty',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -48,7 +48,7 @@ class User extends AppModel {
 			),
 			'isUnique' => array(
 				'rule' => array('isUnique'),
-				//'message' => 'Your custom message here',
+				'message' => 'Username must be unique',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -68,7 +68,7 @@ class User extends AppModel {
 		'email' => array(
 			'email' => array(
 				'rule' => array('email'),
-				//'message' => 'Your custom message here',
+				'message' => 'Email address is not valid',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -76,7 +76,7 @@ class User extends AppModel {
 			),
 			'isUnique' => array(
 				'rule' => array('isUnique'),
-				//'message' => 'Your custom message here',
+				'message' => 'Email is already registered',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -86,7 +86,7 @@ class User extends AppModel {
 		'password' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
-				//'message' => 'Your custom message here',
+				'message' => 'Password can\'t be blank',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -94,7 +94,7 @@ class User extends AppModel {
 			),
 			'minLength' => array(
 				'rule' => array('minLength', 6),
-				//'message' => 'Your custom message here',
+				'message' => 'Password must be at least 6 characters long',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -102,14 +102,38 @@ class User extends AppModel {
 			),
 			'alphaNumeric' => array(
 				'rule' => array('alphaNumeric'),
-				//'message' => 'Your custom message here',
+				'message' => 'Password must be alpha numeric',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'password_again' => array(
+			'notBlank' => array(
+				'rule' => array('notBlank'),
+				'message' => 'Password needs to be provided again',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'matchPassword' => array(
+				'rule' => array('matchPassword'),
+				'message' => 'Both passwords must match',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			)
+		)
 	);
+
+	public function matchPassword($check) {
+        // $data array is passed using the form field name as the key
+        // have to extract the value to make the function generic
+        return $this->data['User']['password'] == $this->data['User']['password_again'];
+    }
 
 	// The Associations below have been created with all possible keys, those that are not needed can be removed
 

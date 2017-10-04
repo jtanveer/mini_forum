@@ -37,13 +37,27 @@ class AppController extends Controller {
 		'Auth' => array(
 			'authorize' => array(
 				'Actions' => array('actionPath' => 'controllers')
+			),
+			'flash' => array(
+				'element' => 'error',
+				'key' => 'auth',
+				'params' => array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-danger'
+				)
 			)
 		),
 		'Session',
 		'Flash',
 		'Access'
 	);
-	public $helpers = array('Html', 'Form', 'Session', 'Access');
+	public $helpers = array(
+		'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
+		'Form' => array('className' => 'BoostCake.BoostCakeForm'),
+		'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
+		'Session',
+		'Access'
+	);
 
 	public function beforeFilter() {
 		//Configure AuthComponent

@@ -1,0 +1,8 @@
+@charset "utf-8";
+
+/** app specific styles */
+.div-center {
+    margin: 0 auto;
+    width:50%;
+    background: #eee;
+}
