@@ -110,3 +110,9 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+function p($obj) {
+	echo "<pre>";
+	print_r($obj);
+	echo "</pre>";
+}

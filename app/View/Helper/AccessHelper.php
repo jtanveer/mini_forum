@@ -33,4 +33,3 @@ class AccessHelper extends AppHelper {
 		return $this->user;
 	}
 }
-?>
