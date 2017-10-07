@@ -15,6 +15,8 @@ class CategoriesController extends AppController {
  */
 	public $components = array('Paginator');
 
+	public $uses = array('Topic', 'Category');
+
 /**
  * index method
  *
@@ -22,7 +24,7 @@ class CategoriesController extends AppController {
  */
 	public function index() {
 		$this->Category->recursive = 0;
-		$this->set('categories', $this->Paginator->paginate());
+		$this->set('categories', $this->Paginator->paginate('Category'));
 	}
 
 /**
@@ -103,8 +105,14 @@ class CategoriesController extends AppController {
 	}
 
 	public function all() {
-		$this->Category->recursive = 0;
-		$this->set('categories', $this->Paginator->paginate());
+		$this->Category->recursive = 1;
+		$categories = $this->Paginator->paginate('Category');
+		$this->Topic->recursive = -1;
+		$recents = $this->Topic->find('all', array(
+			'order' => array('Topic.created' => 'desc'),
+			'limit' => 5
+		));
+		$this->set(compact('categories', 'recents'));
 	}
 
 	public function details($id = null) {
@@ -112,6 +120,16 @@ class CategoriesController extends AppController {
 			throw new NotFoundException(__('Invalid category'));
 		}
 		$options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
-		$this->set('category', $this->Category->find('first', $options));
+		$category = $this->Category->find('first', $options);
+		$this->Topic->recursive = -1;
+		$this->Paginator->settings = array(
+			'conditions' => array('Topic.category_id' => $id)
+		);
+		$topics = $this->Paginator->paginate('Topic');
+		$this->Category->recursive = 0;
+		$categories = $this->Category->find('all', array(
+			'conditions' => array('Category.id <>' => $id)
+		));
+		$this->set(compact('category', 'topics', 'categories'));
 	}
 }

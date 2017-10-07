@@ -57,7 +57,9 @@ class AppController extends Controller {
 		'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
 		'Pager',
 		'Session',
-		'Access'
+		'Access',
+		'Time',
+		'Text'
 	);
 
 	public function beforeFilter() {

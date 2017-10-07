@@ -45,7 +45,11 @@ class PagerHelper extends AppHelper {
 		$span1 = $this->Html->tag("span", "&laquo; Previous");
 		$options = array();
 		if ($params["prevPage"]) {
-			$options["href"] = $url."/page:".($params['page'] - 1);
+			if($params['page'] - 1 == 1) {
+				$options["href"] = $url;
+			} else {
+				$options["href"] = $url."/page:".($params['page'] - 1);
+			}
 			$options["class"] = "page-link";
 			$a1 = $this->Html->tag("a", $span1, $options);
 			$options = array();

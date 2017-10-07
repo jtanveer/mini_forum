@@ -15,7 +15,7 @@ class TopicsController extends AppController {
  */
 	public $components = array('Paginator');
 
-	public $uses = array('Topic', 'Category');
+	public $uses = array('Topic', 'Category', 'Reply');
 
 	public function beforeFilter() {
 	    parent::beforeFilter();
@@ -30,7 +30,7 @@ class TopicsController extends AppController {
  */
 	public function index() {
 		$this->Topic->recursive = 0;
-		$this->set('topics', $this->Paginator->paginate());
+		$this->set('topics', $this->Paginator->paginate('Topic'));
 	}
 
 /**
@@ -118,6 +118,9 @@ class TopicsController extends AppController {
 
 	public function all() {
 		$this->Topic->recursive = 1;
+		$this->Paginator->settings = array(
+			'order' => array('Topic.created' => 'desc')
+		);
 		$topics = $this->Paginator->paginate('Topic');
 		$this->Category->recursive = 0;
 		$categories = $this->Category->find('all');
@@ -129,7 +132,17 @@ class TopicsController extends AppController {
 			throw new NotFoundException(__('Invalid topic'));
 		}
 		$options = array('conditions' => array('Topic.' . $this->Topic->primaryKey => $id));
-		$this->set('topic', $this->Topic->find('first', $options));
+		$this->Topic->unbindModel(array('hasMany' => array('Reply')));
+		$topic = $this->Topic->find('first', $options);
+		$replies = $this->Reply->find('all', array(
+			'conditions' => array('Reply.topic_id' => $id)
+		));
+		$recents = $this->Topic->find('all', array(
+			'conditions' => array('Topic.id <>' => $id),
+			'order' => array('Topic.created' => 'desc'),
+			'limit' => 5
+		));
+		$this->set(compact('topic', 'replies', 'recents'));
 	}
 
 	public function create() {
