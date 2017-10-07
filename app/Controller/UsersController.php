@@ -38,10 +38,11 @@ class UsersController extends AppController {
 	//     $group->id = 2;
 	//     $this->Acl->deny($group, 'controllers');
 	//     $this->Acl->allow($group, 'controllers/Topics/all');
-	//     $this->Acl->allow($group, 'controllers/Topics/topic');
+	//     $this->Acl->allow($group, 'controllers/Topics/details');
 	//     $this->Acl->allow($group, 'controllers/Topics/create');
-	//     $this->Acl->allow($group, 'controllers/Topics/ajax_reply');
+	//     $this->Acl->allow($group, 'controllers/Topics/reply');
 	//     $this->Acl->allow($group, 'controllers/Categories/all');
+	//     $this->Acl->allow($group, 'controllers/Categories/details');
 
 	//     // allow basic users to log out
 	//     $this->Acl->allow($group, 'controllers/users/logout');

@@ -31,6 +31,7 @@ App::uses('Controller', 'Controller');
  * @link		https://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+	
 	public $components = array(
 		'DebugKit.Toolbar',
 		'Acl',
@@ -51,6 +52,7 @@ class AppController extends Controller {
 		'Flash',
 		'Access'
 	);
+	
 	public $helpers = array(
 		'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
 		'Form' => array('className' => 'BoostCake.BoostCakeForm'),
@@ -59,7 +61,7 @@ class AppController extends Controller {
 		'Session',
 		'Access',
 		'Time',
-		'Text'
+		'Text',
 	);
 
 	public function beforeFilter() {

@@ -161,7 +161,22 @@ class TopicsController extends AppController {
 		$this->set(compact('categories'));
 	}
 
-	public function ajax_reply($id = null) {
-
+	public function reply($id = null) {
+		$this->autoRender = false;
+		if (!$this->Topic->exists($id)) {
+			throw new NotFoundException(__('Invalid topic'));
+		}
+		if ($this->request->is('post')) {
+			$user = $this->Auth->user();
+			$this->request->data['Reply']['user_id'] = $user['id'];
+			$this->request->data['Reply']['topic_id'] = $id;
+			$this->Reply->create();
+			if ($this->Reply->save($this->request->data)) {
+				$this->Flash->success(__('The reply has been sent.'));
+				return $this->redirect(array('action' => 'details', $id));
+			} else {
+				$this->Flash->error(__('The reply could not be sent. Please, try again.'));
+			}
+		}
 	} 
 }

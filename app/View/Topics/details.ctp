@@ -24,6 +24,31 @@
 				</li>
 			<?php endforeach; ?>
 		</ul>
+		<div>
+			<?php
+	            echo $this->Form->create('Reply', array(
+	                'url' => array('controller' => 'topics', 'action' => 'reply', $topic['Topic']['id']),
+	                'enctype' 	=> 'multipart/form-data',
+	                'inputDefaults' => array(
+	                    'div' => 'form-group',
+	                    'wrapInput' => false,
+	                    'class' => 'form-control'
+	                ),
+	                'class' => 'well'
+	            ));
+                echo $this->Form->input('text', array(
+                	'label' => false,
+					'placeholder' => 'Reply here...',
+					'type' => 'textarea',
+					'required' => true
+				));
+                echo $this->Form->submit('Reply', array(
+                    'div' => 'form-group',
+                    'class' => 'btn btn-success'
+                ));
+	            echo $this->Form->end();
+	        ?>
+        </div>
 	</div>
 	<div class="col-md-4 pl-3">
 		<div class="col-md-12 border">

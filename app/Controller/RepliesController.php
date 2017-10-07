@@ -15,6 +15,8 @@ class RepliesController extends AppController {
  */
 	public $components = array('Paginator');
 
+	public $uses = array('Reply', 'Topic');
+
 /**
  * index method
  *
@@ -55,7 +57,7 @@ class RepliesController extends AppController {
 				$this->Flash->error(__('The reply could not be saved. Please, try again.'));
 			}
 		}
-		$topics = $this->Reply->Topic->find('list');
+		$topics = $this->Topic->find('list');
 		$users = $this->Reply->User->find('list');
 		$this->set(compact('topics', 'users'));
 	}
@@ -82,7 +84,7 @@ class RepliesController extends AppController {
 			$options = array('conditions' => array('Reply.' . $this->Reply->primaryKey => $id));
 			$this->request->data = $this->Reply->find('first', $options);
 		}
-		$topics = $this->Reply->Topic->find('list');
+		$topics = $this->Topic->find('list');
 		$users = $this->Reply->User->find('list');
 		$this->set(compact('topics', 'users'));
 	}

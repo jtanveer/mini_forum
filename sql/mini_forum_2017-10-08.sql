@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.5-10.1.21-MariaDB)
 # Database: mini_forum
-# Generation Time: 2017-10-02 22:07:43 +0000
+# Generation Time: 2017-10-07 21:43:09 +0000
 # ************************************************************
 
 
@@ -43,7 +43,7 @@ LOCK TABLES `acos` WRITE;
 
 INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`)
 VALUES
-	(1,NULL,NULL,NULL,'controllers',1,94),
+	(1,NULL,NULL,NULL,'controllers',1,104),
 	(2,1,NULL,NULL,'Categories',2,17),
 	(3,2,NULL,NULL,'index',3,4),
 	(4,2,NULL,NULL,'view',5,6),
@@ -73,7 +73,6 @@ VALUES
 	(28,23,NULL,NULL,'delete',55,56),
 	(29,23,NULL,NULL,'all',57,58),
 	(31,23,NULL,NULL,'create',59,60),
-	(32,23,NULL,NULL,'ajax_reply',61,62),
 	(33,1,NULL,NULL,'Users',66,83),
 	(35,33,NULL,NULL,'index',67,68),
 	(36,33,NULL,NULL,'login',69,70),
@@ -88,8 +87,14 @@ VALUES
 	(46,45,NULL,NULL,'ToolbarAccess',87,92),
 	(47,46,NULL,NULL,'history_state',88,89),
 	(48,46,NULL,NULL,'sql_explain',90,91),
-	(49,23,NULL,NULL,'details',63,64),
-	(50,2,NULL,NULL,'details',15,16);
+	(49,23,NULL,NULL,'details',61,62),
+	(50,2,NULL,NULL,'details',15,16),
+	(51,23,NULL,NULL,'reply',63,64),
+	(52,1,NULL,NULL,'BoostCake',94,103),
+	(53,52,NULL,NULL,'BoostCake',95,102),
+	(54,53,NULL,NULL,'index',96,97),
+	(55,53,NULL,NULL,'bootstrap2',98,99),
+	(56,53,NULL,NULL,'bootstrap3',100,101);
 
 /*!40000 ALTER TABLE `acos` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -152,9 +157,11 @@ VALUES
 	(2,2,1,'-1','-1','-1','-1'),
 	(3,2,29,'1','1','1','1'),
 	(5,2,31,'1','1','1','1'),
-	(6,2,32,'1','1','1','1'),
 	(7,2,8,'1','1','1','1'),
-	(8,2,37,'1','1','1','1');
+	(8,2,37,'1','1','1','1'),
+	(9,2,49,'1','1','1','1'),
+	(10,2,51,'1','1','1','1'),
+	(11,2,50,'1','1','1','1');
 
 /*!40000 ALTER TABLE `aros_acos` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -241,7 +248,18 @@ LOCK TABLES `replies` WRITE;
 
 INSERT INTO `replies` (`id`, `text`, `topic_id`, `user_id`, `created`, `modified`)
 VALUES
-	(1,'That\'s a great news!',1,3,'2017-10-01 18:03:51','2017-10-01 18:03:51');
+	(1,'That\'s a great news!',1,3,'2017-10-01 18:03:51','2017-10-01 18:03:51'),
+	(2,'I am buying one soon!',1,4,'2017-10-07 18:34:16','2017-10-07 18:34:16'),
+	(3,'great movie.',13,5,'2017-10-07 18:35:06','2017-10-07 18:35:06'),
+	(4,'Its a joke',14,2,'2017-10-07 18:35:44','2017-10-07 18:35:44'),
+	(5,'Why do you think its a joke??',14,4,'2017-10-07 18:36:05','2017-10-07 18:36:05'),
+	(6,'Is Spider Man even a hero? :/',14,2,'2017-10-07 18:36:30','2017-10-07 18:36:30'),
+	(7,'He is probably the youngest one, but still he is!',14,5,'2017-10-07 18:37:06','2017-10-07 18:37:06'),
+	(8,'Everyone makes joke out of him, even his girlfriend! :p',14,2,'2017-10-07 18:38:11','2017-10-07 18:38:11'),
+	(9,'That\'s just part of the story. That just does not destroy his heroism.',14,4,'2017-10-07 18:38:52','2017-10-07 18:38:52'),
+	(10,'Heroism?! big lol',14,2,'2017-10-07 18:39:32','2017-10-07 18:39:32'),
+	(17,'sad',14,2,'2017-10-07 21:39:29','2017-10-07 21:39:29'),
+	(18,'Are you kidding me?!',14,2,'2017-10-07 21:40:38','2017-10-07 21:40:38');
 
 /*!40000 ALTER TABLE `replies` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -327,7 +345,8 @@ VALUES
 	(1,'admin',1,'imjtnayon@gmail.com','da8f8960c914667963ebd8c55216813ab6d88871','2017-09-29 17:36:46','2017-10-01 15:20:10'),
 	(2,'author1',2,'jtanveer@outlook.com','da8f8960c914667963ebd8c55216813ab6d88871','2017-09-29 17:37:08','2017-09-29 17:37:08'),
 	(3,'author2',2,'imjtn@yahoo.com','da8f8960c914667963ebd8c55216813ab6d88871','2017-09-29 17:37:42','2017-09-29 17:37:42'),
-	(4,'author3',2,'a@b.com','bb06321953015f8dba5a4080d86f5eb8a51de05b','2017-10-02 20:29:45','2017-10-02 20:29:45');
+	(4,'author3',2,'a@b.com','bb06321953015f8dba5a4080d86f5eb8a51de05b','2017-10-02 20:29:45','2017-10-02 20:29:45'),
+	(5,'author5',2,'c@b.com','bb06321953015f8dba5a4080d86f5eb8a51de05b','2017-10-03 19:33:08','2017-10-03 19:33:08');
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
