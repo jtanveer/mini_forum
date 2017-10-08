@@ -16,22 +16,23 @@
 			));
 		?>
 		<fieldset>
-		<?php
-			echo $this->Form->inputs(array(
-				'title',
-				'content' => array(
-					'label' => 'Content',
-					'placeholder' => 'Text here...',
-					'type' => 'textarea',
-					'required' => false
-				),
-				'category_id'
-			));
-			echo $this->Form->submit('Create', array(
-				'div' => 'form-group',
-				'class' => 'btn btn-success'
-			));
-		?>
+			<?php
+				echo $this->Form->inputs(array(
+					'legend' => false,
+					'title',
+					'content' => array(
+						'label' => 'Content',
+						'placeholder' => 'Text here...',
+						'type' => 'textarea',
+						'required' => false
+					),
+					'category_id'
+				));
+				echo $this->Form->submit('Create', array(
+					'div' => 'form-group',
+					'class' => 'btn btn-success'
+				));
+			?>
 		</fieldset>
 		<?php
 			echo $this->Form->end();
