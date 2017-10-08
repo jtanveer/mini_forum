@@ -1,4 +1,12 @@
-<h3><?php echo __('Topics'); ?></h3>
+<div class="row">
+	<h3 class="col-md-10"><?php echo __('Topics'); ?></h3>
+	<div class="col-md-2">
+		<?php if ($this->Access->isLoggedIn()) {
+			echo $this->Html->link(__('Create Topic'), array('controller' => 'topics', 'action' => 'create'), array('class' => 'btn btn-secondary float-right'));
+			}
+		?>
+	</div>
+</div>
 <div class="row mt-4">
 	<div class="col-md-9">
 		<table class="table table-responsive table-hover">
@@ -18,7 +26,7 @@
 									<?php echo $this->Html->link($topic['Topic']['title'], array('controller' => 'topics', 'action' => 'details', $topic['Topic']['id'])); ?>
 								</strong>
 							</div>
-							<div class="content-text mt-2">
+							<div class="mt-2">
 								<?php 
 									echo $this->Text->truncate(
 										$topic['Topic']['content'],

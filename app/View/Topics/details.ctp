@@ -18,35 +18,39 @@
 							<?php echo $reply['User']['username']; ?>
 						</strong>
 					</div>
-					<div class="content-text mt-2">
+					<div class="mt-2">
 						<?php echo $reply['Reply']['text']; ?>
+					</div>
+					<div class="mt-2">
+						<p class="mini-text"><?php echo $this->Time->format($reply['Reply']['created'], '%B %e, %Y %H:%M %p'); ?></p>
 					</div>
 				</li>
 			<?php endforeach; ?>
 		</ul>
 		<div>
 			<?php
-	            echo $this->Form->create('Reply', array(
-	                'url' => array('controller' => 'topics', 'action' => 'reply', $topic['Topic']['id']),
-	                'enctype' 	=> 'multipart/form-data',
-	                'inputDefaults' => array(
-	                    'div' => 'form-group',
-	                    'wrapInput' => false,
-	                    'class' => 'form-control'
-	                ),
-	                'class' => 'well'
-	            ));
-                echo $this->Form->input('text', array(
-                	'label' => false,
+				echo $this->Form->create('Reply', array(
+					'id' => 'formReply',
+					'url' => array('controller' => 'topics', 'action' => 'reply', $topic['Topic']['id']),
+					'enctype' 	=> 'multipart/form-data',
+					'inputDefaults' => array(
+						'div' => 'form-group',
+						'wrapInput' => false,
+						'class' => 'form-control'
+					),
+					'class' => 'well'
+				));
+				echo $this->Form->input('text', array(
+					'label' => 'Add your reply',
 					'placeholder' => 'Reply here...',
 					'type' => 'textarea',
-					'required' => true
+					'required' => false
 				));
-                echo $this->Form->submit('Reply', array(
-                    'div' => 'form-group',
-                    'class' => 'btn btn-success'
-                ));
-	            echo $this->Form->end();
+				echo $this->Form->submit('Reply', array(
+					'div' => 'form-group',
+					'class' => 'btn btn-success'
+				));
+				echo $this->Form->end();
 	        ?>
         </div>
 	</div>
@@ -63,3 +67,45 @@
 		</div>
 	</div>
 </div>
+<script>
+	$(document).ready(function() {
+		tinymce.init({
+			selector:'textarea',
+			toolbar: 'bold italic',
+			menubar: false,
+			setup: function(editor) {
+				editor.on('keyup', function(e) {
+					// Revalidate the textReply field
+					$('#formReply').formValidation('revalidateField', 'data[Reply][text]');
+				});
+			}
+		});
+
+		$('#formReply').formValidation({
+			framework: 'bootstrap',
+			excluded: [':disabled'],
+			feedbackIcons: {
+				valid: 'glyphicon glyphicon-ok',
+				invalid: 'glyphicon glyphicon-remove',
+				validating: 'glyphicon glyphicon-refresh'
+			},
+			fields: {
+				'data[Reply][text]': {
+					validators: {
+						callback: {
+							message: 'Reply should be a bit bigger than this!',
+							callback: function(value, validator, $field) {
+								// Get the plain text without HTML
+								var text = tinyMCE.activeEditor.getContent({
+									format: 'text'
+								});
+
+								return text.length >= 2;
+							}
+						}
+					}
+				}
+			}
+		});
+	});
+</script>

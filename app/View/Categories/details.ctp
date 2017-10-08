@@ -1,5 +1,15 @@
-<h3><?php echo $category['Category']['name']; ?></h3>
-<small><?php echo $category['Category']['description']; ?></small>
+<div class="row">
+	<div class="col-md-10">
+		<h3><?php echo $category['Category']['name']; ?></h3>
+		<small><?php echo $category['Category']['description']; ?></small>		
+	</div>
+	<div class="col-md-2">
+		<?php if ($this->Access->isLoggedIn()) {
+			echo $this->Html->link(__('Create Topic'), array('controller' => 'topics', 'action' => 'create'), array('class' => 'btn btn-secondary float-right'));
+			}
+		?>
+	</div>
+</div>
 <hr>
 <div class="row mt-4">
 	<div class="col-md-8">

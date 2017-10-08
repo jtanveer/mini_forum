@@ -32,6 +32,10 @@ $devInfo = __d('mini_forum', 'Developed by: Jamael Tanveer Nayon');
 	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+	<script src="https://cloud.tinymce.com/stable/plugins.min.js?apiKey=cwo1kn107a7aoeq6jwns2zyj6ipmk5149vwqsepfijt8fbk3"></script>
+	<script src="http://formvalidation.io/vendor/formvalidation/js/formValidation.min.js"></script>
+	<script src="http://formvalidation.io/vendor/formvalidation/js/framework/bootstrap.min.js"></script>
 
 	<?php
 		echo $this->Html->meta('icon');

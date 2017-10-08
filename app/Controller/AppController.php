@@ -61,7 +61,7 @@ class AppController extends Controller {
 		'Session',
 		'Access',
 		'Time',
-		'Text',
+		'Text'
 	);
 
 	public function beforeFilter() {

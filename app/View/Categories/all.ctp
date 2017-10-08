@@ -1,4 +1,12 @@
-<h3><?php echo __('Categories'); ?></h3>
+<div class="row">
+	<h3 class="col-md-10"><?php echo __('Categories'); ?></h3>
+	<div class="col-md-2">
+		<?php if ($this->Access->isLoggedIn()) {
+			echo $this->Html->link(__('Create Topic'), array('controller' => 'topics', 'action' => 'create'), array('class' => 'btn btn-secondary float-right'));
+			}
+		?>
+	</div>
+</div>
 <div class="row mt-4">
 	<div class="col-md-8">
 		<table class="table table-responsive table-hover">

@@ -152,13 +152,17 @@ class TopicsController extends AppController {
 			$this->Topic->create();
 			if ($this->Topic->save($this->request->data)) {
 				$this->Flash->success(__('The topic has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'all'));
 			} else {
 				$this->Flash->error(__('The topic could not be saved. Please, try again.'));
 			}
 		}
 		$categories = $this->Topic->Category->find('list');
-		$this->set(compact('categories'));
+		$recents = $this->Topic->find('all', array(
+			'order' => array('Topic.created' => 'desc'),
+			'limit' => 5
+		));
+		$this->set(compact('categories', 'recents'));
 	}
 
 	public function reply($id = null) {
@@ -176,6 +180,7 @@ class TopicsController extends AppController {
 				return $this->redirect(array('action' => 'details', $id));
 			} else {
 				$this->Flash->error(__('The reply could not be sent. Please, try again.'));
+				return $this->redirect(array('action' => 'details', $id));
 			}
 		}
 	} 
