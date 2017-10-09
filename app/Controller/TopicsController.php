@@ -124,7 +124,8 @@ class TopicsController extends AppController {
 		$topics = $this->Paginator->paginate('Topic');
 		$this->Category->recursive = 0;
 		$categories = $this->Category->find('all');
-		$this->set(compact('topics', 'categories'));
+		$title_for_layout = 'Mini Forum: A forum of life!';
+		$this->set(compact('title_for_layout', 'topics', 'categories'));
 	}
 
 	public function details($id = null) {
@@ -142,7 +143,8 @@ class TopicsController extends AppController {
 			'order' => array('Topic.created' => 'desc'),
 			'limit' => 5
 		));
-		$this->set(compact('topic', 'replies', 'recents'));
+		$title_for_layout = $topic['Topic']['title'].' | Mini Forum';
+		$this->set(compact('title_for_layout', 'topic', 'replies', 'recents'));
 	}
 
 	public function create() {
@@ -162,7 +164,8 @@ class TopicsController extends AppController {
 			'order' => array('Topic.created' => 'desc'),
 			'limit' => 5
 		));
-		$this->set(compact('categories', 'recents'));
+		$title_for_layout = "Create New Topic".' | Mini Forum';
+		$this->set(compact('title_for_layout', 'categories', 'recents'));
 	}
 
 	public function reply($id = null) {

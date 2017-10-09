@@ -1,5 +1,5 @@
 <h3><?php echo $topic['Topic']['title']; ?></h3>
-<small>By <?php echo $topic['User']['username']; ?> on <?php echo $this->Time->format($topic['Topic']['created'], '%B %e, %Y %H:%M %p'); ?> </small>
+<small>By <?php echo $topic['User']['username']; ?> on <?php echo $this->Time->format($topic['Topic']['created'], '%B %e, %Y %H:%M %p'); ?> | <?php echo $this->Html->link(__($topic['Category']['name']), array('controller' => 'categories', 'action' => 'details', $topic['Category']['id'])); ?></small>
 <hr>
 <div class="row mt-4">
 	<div class="col-md-8">
@@ -27,32 +27,34 @@
 				</li>
 			<?php endforeach; ?>
 		</ul>
-		<div>
-			<?php
-				echo $this->Form->create('Reply', array(
-					'id' => 'formReply',
-					'url' => array('controller' => 'topics', 'action' => 'reply', $topic['Topic']['id']),
-					'enctype' 	=> 'multipart/form-data',
-					'inputDefaults' => array(
+		<?php if ($this->Access->isLoggedIn()): ?>
+			<div>
+				<?php
+					echo $this->Form->create('Reply', array(
+						'id' => 'formReply',
+						'url' => array('controller' => 'topics', 'action' => 'reply', $topic['Topic']['id']),
+						'enctype' 	=> 'multipart/form-data',
+						'inputDefaults' => array(
+							'div' => 'form-group',
+							'wrapInput' => false,
+							'class' => 'form-control'
+						),
+						'class' => 'well'
+					));
+					echo $this->Form->input('text', array(
+						'label' => 'Add your reply',
+						'placeholder' => 'Reply here...',
+						'type' => 'textarea',
+						'required' => false
+					));
+					echo $this->Form->submit('Reply', array(
 						'div' => 'form-group',
-						'wrapInput' => false,
-						'class' => 'form-control'
-					),
-					'class' => 'well'
-				));
-				echo $this->Form->input('text', array(
-					'label' => 'Add your reply',
-					'placeholder' => 'Reply here...',
-					'type' => 'textarea',
-					'required' => false
-				));
-				echo $this->Form->submit('Reply', array(
-					'div' => 'form-group',
-					'class' => 'btn btn-success'
-				));
-				echo $this->Form->end();
-	        ?>
-        </div>
+						'class' => 'btn btn-success'
+					));
+					echo $this->Form->end();
+				?>
+			</div>
+    	<?php endif; ?>
 	</div>
 	<div class="col-md-4 pl-3">
 		<div class="col-md-12 border">

@@ -17,6 +17,12 @@ class CategoriesController extends AppController {
 
 	public $uses = array('Topic', 'Category');
 
+	public function beforeFilter() {
+	    parent::beforeFilter();
+
+	    $this->Auth->allow('all', 'details');
+	}
+
 /**
  * index method
  *
@@ -112,7 +118,8 @@ class CategoriesController extends AppController {
 			'order' => array('Topic.created' => 'desc'),
 			'limit' => 5
 		));
-		$this->set(compact('categories', 'recents'));
+		$title_for_layout = "All Categories | Mini Forum";
+		$this->set(compact('title_for_layout', 'categories', 'recents'));
 	}
 
 	public function details($id = null) {
@@ -130,6 +137,7 @@ class CategoriesController extends AppController {
 		$categories = $this->Category->find('all', array(
 			'conditions' => array('Category.id <>' => $id)
 		));
-		$this->set(compact('category', 'topics', 'categories'));
+		$title_for_layout = $category['Category']['name'].' | Mini Forum';
+		$this->set(compact('title_for_layout', 'category', 'topics', 'categories'));
 	}
 }

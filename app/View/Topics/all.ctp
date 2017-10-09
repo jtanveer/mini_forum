@@ -47,7 +47,7 @@
 				<?php endforeach; ?>
 			</tbody>
 			</table>
-			<?php echo $this->Pager->pager($this->Paginator->params(), "/topics/all"); ?>
+			<?php echo $this->Pager->pager($this->Paginator->params(), '/topics/all'); ?>
 	</div>
 	<div class="col-md-3 pl-3">
 		<div class="col-md-12 border">
