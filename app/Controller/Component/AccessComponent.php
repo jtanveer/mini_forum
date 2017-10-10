@@ -1,5 +1,5 @@
-<?
-App::uses('Component', 'Controller');
+<?php
+App::uses('Component', 'Controller');
 
 class AccessComponent extends Component {
 	var $components = array('Acl', 'Auth');
@@ -23,4 +23,3 @@ class AccessComponent extends Component {
 		return $this->Acl->check($aro, $aco, $action);
 	}
 }
-?>
