@@ -69,4 +69,10 @@ class Reply extends AppModel {
 			'order' => ''
 		)
 	);
+
+	public function getRepliesById($topicId) {
+		return $this->find('all', array(
+			'conditions' => array('Reply.topic_id' => $topicId)
+		));
+	}
 }

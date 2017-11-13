@@ -2,8 +2,8 @@
 App::uses('Component', 'Controller');
 
 class AccessComponent extends Component {
-	var $components = array('Acl', 'Auth');
-	var $user;
+	public $components = array('Acl', 'Auth');
+	public $user;
 	
 	function startup(Controller $controller) {
 		parent::startup($controller);

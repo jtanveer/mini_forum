@@ -15,6 +15,13 @@ class TopicsController extends AppController {
  */
 	public $components = array('Paginator');
 
+	public $paginate = array(
+		'recursive' => 1,
+		'order' => array(
+			'Topic.created' => 'desc'
+		)
+	);
+
 	public $uses = array('Topic', 'Category', 'Reply');
 
 	public function beforeFilter() {
@@ -117,14 +124,12 @@ class TopicsController extends AppController {
 	}
 
 	public function all() {
-		$this->Topic->recursive = 1;
-		$this->Paginator->settings = array(
-			'order' => array('Topic.created' => 'desc')
-		);
-		$topics = $this->Paginator->paginate('Topic');
-		$this->Category->recursive = 0;
-		$categories = $this->Category->find('all');
 		$title_for_layout = 'Mini Forum: A forum of life!';
+		// get all topics
+		$this->Paginator->settings = $this->paginate;
+		$topics = $this->Paginator->paginate('Topic');
+		// get all categories
+		$categories = $this->Category->getAll();
 		$this->set(compact('title_for_layout', 'topics', 'categories'));
 	}
 
@@ -132,17 +137,12 @@ class TopicsController extends AppController {
 		if (!$this->Topic->exists($id)) {
 			throw new NotFoundException(__('Invalid topic'));
 		}
-		$options = array('conditions' => array('Topic.' . $this->Topic->primaryKey => $id));
-		$this->Topic->unbindModel(array('hasMany' => array('Reply')));
-		$topic = $this->Topic->find('first', $options);
-		$replies = $this->Reply->find('all', array(
-			'conditions' => array('Reply.topic_id' => $id)
-		));
-		$recents = $this->Topic->find('all', array(
-			'conditions' => array('Topic.id <>' => $id),
-			'order' => array('Topic.created' => 'desc'),
-			'limit' => 5
-		));
+		// get topic details
+		$topic = $this->Topic->getTopicDetails($id);
+		// get topic replies
+		$replies = $this->Reply->getRepliesById($id);
+		// get recent topics
+		$recents = $this->Topic->getRecentTopics($id);
 		$title_for_layout = $topic['Topic']['title'].' | Mini Forum';
 		$this->set(compact('title_for_layout', 'topic', 'replies', 'recents'));
 	}

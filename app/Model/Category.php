@@ -48,4 +48,10 @@ class Category extends AppModel {
 		)
 	);
 
+
+	public function getAll() {
+		$this->recursive = 0;
+		return $this->find('all');
+	}
+
 }

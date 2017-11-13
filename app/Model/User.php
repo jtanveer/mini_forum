@@ -10,6 +10,8 @@ App::uses('AuthComponent', 'Controller/Component');
  */
 class User extends AppModel {
 
+	public $DEFAULT_GROUP = 2;
+
 	public $actsAs = array('Acl' => array('type' => 'requester', 'enabled' => false));
 
 	public function parentNode() {
@@ -177,6 +179,9 @@ class User extends AppModel {
         $this->data['User']['password'] = AuthComponent::password(
           $this->data['User']['password']
         );
+        if (strpos(Router::url(null, false), 'register') !== false) {
+	        $this->data['User']['group_id'] = $this->DEFAULT_GROUP;
+	    }
         return true;
     }
 

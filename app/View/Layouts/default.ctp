@@ -86,7 +86,7 @@ $devInfo = __d('mini_forum', 'Developed by: Jamael Tanveer Nayon');
 	</div>
 	<footer class="footer">
   		<div class="container-fluid">
-    		<span class="text-muted"><?php echo $devInfo; ?></span>
+    		<span class="text-muted"><?php echo __d('cake_dev', 'CakePHP %s', Configure::version()); ?></span>
   		</div>
     </footer>
 </body>

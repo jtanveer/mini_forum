@@ -102,4 +102,18 @@ class Topic extends AppModel {
 		)
 	);
 
+	public function getTopicDetails($id) {
+		$options = array('conditions' => array('Topic.' . $this->primaryKey => $id));
+		$this->unbindModel(array('hasMany' => array('Reply')));
+		return $this->find('first', $options);
+	}
+
+	public function getRecentTopics($exceptionId) {
+		return $this->find('all', array(
+			'conditions' => array('Topic.id <>' => $exceptionId),
+			'order' => array('Topic.created' => 'desc'),
+			'limit' => 5
+		));
+	}
+
 }

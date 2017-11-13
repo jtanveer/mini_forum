@@ -65,7 +65,6 @@ class UsersController extends AppController {
 	public function register() {
 		if ($this->request->is('post')) {
 	        $data = $this->request->data;
-        	$data['User']['group_id'] = 2;
         	$this->User->create();
         	if($this->User->save($data)) {
         		$this->Flash->success(__('Registration successful!'));
